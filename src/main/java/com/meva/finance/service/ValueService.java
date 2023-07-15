@@ -1,0 +1,35 @@
+package com.meva.finance.service;
+
+import com.meva.finance.dto.ValueDto;
+import com.meva.finance.model.SubCategory;
+import com.meva.finance.model.Value;
+import com.meva.finance.repository.CategoryRepository;
+import com.meva.finance.repository.SubCategoryRepository;
+import com.meva.finance.repository.ValueRepository;
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.http.ResponseEntity;
+import org.springframework.stereotype.Service;
+
+import java.util.Objects;
+
+@Service
+public class ValueService {
+
+    @Autowired
+    private ValueRepository valueRepository;
+    @Autowired
+    private CategoryRepository categoryRepository;
+    @Autowired
+    private SubCategoryRepository subCategoryRepository;
+
+    public ResponseEntity<String> register(ValueDto valueDto) {
+        String description = valueDto.getDescription();
+        SubCategory subCategory = subCategoryRepository.findByDescription(description);
+        if (Objects.isNull(subCategory)){
+            return ResponseEntity.badRequest().body("description field not found.");
+        }
+        Value value = Value.converter(valueDto);
+        value.setSubCategory(subCategory);
+        return ResponseEntity.ok(valueRepository.save(value).getOfferer());
+    }
+}

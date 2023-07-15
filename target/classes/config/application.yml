@@ -10,7 +10,7 @@ spring:
   # Database
   datasource:
     driver-class-name: org.postgresql.Driver
-    url: jdbc:postgresql://localhost:5432/postgres
+    url: jdbc:postgresql://localhost:5432/church_finance
     username: postgres
     password: postgres
   # JPA properties
@@ -31,4 +31,4 @@ logging:
     org.hibernate: debug
 # Server configuration
 server:
-  port: 8080 #set your port
+  port: 8484 #set your port
