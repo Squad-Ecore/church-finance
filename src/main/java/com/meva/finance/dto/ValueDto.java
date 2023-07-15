@@ -13,7 +13,9 @@ import java.time.LocalDateTime;
 @Builder
 public class ValueDto {
     private String offerer;
-    private String description;
+    private String category;
+    private String type;
+    private String form;
     private Double value;
     private LocalDateTime dateTime;
 }

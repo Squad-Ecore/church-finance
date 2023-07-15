@@ -20,6 +20,8 @@ public class Value {
     @GeneratedValue(strategy = GenerationType.SEQUENCE)
     @Column(name = "id_value")
     private Long idValue;
+    private String type;
+    private String form;
     private String offerer;
     private Double value;
     private LocalDateTime dateTime;
@@ -29,6 +31,7 @@ public class Value {
 
     public static Value converter(ValueDto valueDto) {
         return Value.builder().offerer(valueDto.getOfferer())
-                .value(valueDto.getValue()).dateTime(valueDto.getDateTime()).build();
+                .value(valueDto.getValue()).form(valueDto.getForm()).
+                type(valueDto.getType()).dateTime(valueDto.getDateTime()).build();
     }
 }
